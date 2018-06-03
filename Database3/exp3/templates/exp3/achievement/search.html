@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+{% load static %}
+<meta charset="utf-8">
+<link href="{% static 'exp3/css/bootstrap.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'exp3/css/bootstrap-grid.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'exp3/css/bootstrap-reboot.css' %}" rel="stylesheet" type="text/css" />
+<script src="{% static 'exp3/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'exp3/js/bootstrap.min.js' %}"></script>
+<title>成果</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'exp3:index' %}">科研管理系统</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'exp3:institutesList' %}">机构<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'exp3:labsList' %}">实验室</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'exp3:groupsList' %}">研究组</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'exp3:teachersList' %}">老师</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'exp3:studentsList' %}">学生</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'exp3:projectsList' %}">课题</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'exp3:achievementsList' %}">成果</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'exp3:papersList' %}">论文</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'exp3:patentsList' %}">专利</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container" style="padding-top: 20px; margin-top: 20px">
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'exp3:achievementsList' %}">列表</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'exp3:searchAchievements' %}">查询</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'exp3:createAchievements' %}">添加</a>
+    </li>
+  </ul>
+
+  <div class="card" style="margin-top: 20px">
+    <div class="card-header">输入成果信息</div>
+    <div class="card-body">
+      <form action="{% url 'exp3:searchAchievements' %}" method="post">
+      {% csrf_token %}
+        <div class="form-group row">
+          <label for="achievementId" class="col-sm-2 col-form-label">编号</label>
+          <div class="col-sm-10">
+            {{ form.id }}
+            <small id="achievementIdHelp" class="form-text text-muted">合法的编号应为长度不超过10的字符串</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="achievementResult" class="col-sm-2 col-form-label">结果</label>
+          <div class="col-sm-10">
+            {{ form.result }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="achievementStartDate" class="col-sm-2 col-form-label">开始日期</label>
+          <div class="col-sm-10">
+            {{ form.start_date }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="achievementEndDate" class="col-sm-2 col-form-label">结束日期</label>
+          <div class="col-sm-10">
+            {{ form.end_date }}
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="achievementProject" class="col-sm-2 col-form-label">项目编号</label>
+          <div class="col-sm-10">
+            {{ form.project }}
+            <small id="achievementProjectHelp" class="form-text text-muted">合法的项目编号应为长度不超过10的字符串</small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">确定</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
