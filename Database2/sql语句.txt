@@ -1,0 +1,9 @@
+﻿1.select distinct ESSN from WORKS_ON where PNO = '%PNO%';
+2.select distinct ENAME from EMPLOYEE natural join WORKS_ON natural join PROJECT where PNAME = '%PNAME%';
+3.select distinct ENAME,ADDRESS from EMPLOYEE natural join DEPARTMENT where DNAME = '%DNAME%';
+4.select distinct ENAME,ADDRESS from EMPLOYEE natural join DEPARTMENT where DEPARTMENT.DNAME = '%DNAME%' and EMPLOYEE.SALARY < %SALARY%;
+5.select distinct ENAME from EMPLOYEE natural join WORKS_ON where PNO <> '%PNO%';
+6.select EMPLOYEE.ENAME,DNAME from EMPLOYEE natural join DEPARTMENT join EMPLOYEE as LEADER on EMPLOYEE.SUPERSSN = LEADER.ESSN and EMPLOYEE.ESSN <> LEADER.ESSN where LEADER.ENAME = '%ENAME%';
+7.select distinct a.ESSN from (select ESSN from WORKS_ON where PNO = '%PNO1%') as a join (select ESSN from WORKS_ON where PNO = '%PNO2%') as b on a.ESSN = b.ESSN;
+8.select DNAME from DEPARTMENT natural join EMPLOYEE group by DNO having avg(SALARY) < %SALARY%;
+9.select ENAME from EMPLOYEE natural join WORKS_ON group by ESSN,ENAME having count(PNO) >= %N% and sum(HOURS) <= %HOURS%;
