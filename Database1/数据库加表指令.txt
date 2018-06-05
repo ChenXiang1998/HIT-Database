@@ -1,0 +1,35 @@
+create table EMPLOYEE(
+	ENAME varchar(3),
+	ESSN char(5) primary key,
+	ADDRESS char(3),
+	SALARY int,
+	SUPERSSN char(5),
+	DNO int
+);
+
+create table DEPARTMENT(
+	DNAME varchar(5),
+	DNO int primary key,
+	MGRSSN char(5),
+	MGRSTARTDATE datetime
+);
+
+create table PROJECT(
+	PNAME varchar(5),
+	PNO char(3) primary key,
+	PLOCATION char(3),
+	DNO int
+);
+
+create table WORKS_ON(
+	ESSN char(5),
+	PNO char(3),
+	HOURS int,
+	primary key(ESSN,PNO)
+);
+
+LOAD DATA LOCAL INFILE "D:\EMPLOYEE.txt" INTO TABLE EMPLOYEE;
+LOAD DATA LOCAL INFILE "D:\DEPARTMENT.txt" INTO TABLE DEPARTMENT;
+LOAD DATA LOCAL INFILE "D:\WORKS_ON.txt" INTO TABLE WORKS_ON;
+LOAD DATA LOCAL INFILE "D:\PROJECT.txt" INTO TABLE PROJECT;
+

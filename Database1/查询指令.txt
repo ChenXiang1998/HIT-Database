@@ -1,0 +1,9 @@
+﻿1.select distinct ENAME from EMPLOYEE natural join WORKS_ON natural join PROJECT where PNAME = '哈同公路';
+2.select distinct ENAME,ADDRESS from EMPLOYEE natural join DEPARTMENT where DEPARTMENT.DNAME = '研发部' and EMPLOYEE.SALARY < 3000;
+3.select distinct b.ENAME from EMPLOYEE as b where b.ENAME not in (select distinct ENAME from EMPLOYEE natural join WORKS_ON where PNO = 'P1');
+4.select EMPLOYEE.ENAME,DNAME from EMPLOYEE natural join DEPARTMENT join EMPLOYEE as LEADER on EMPLOYEE.SUPERSSN = LEADER.ESSN and EMPLOYEE.ESSN <> LEADER.ESSN where LEADER.ENAME = '张红';
+5.select distinct a.ESSN from (select ESSN from WORKS_ON where PNO = 'P1') as a join (select ESSN from WORKS_ON where PNO = 'P2') as b on a.ESSN = b.ESSN;
+6.select ENAME from EMPLOYEE natural join WORKS_ON group by ESSN,ENAME having count(PNO) = 10;
+7.select DNAME from DEPARTMENT natural join EMPLOYEE group by DNO having avg(SALARY) < 3000;
+8.select ENAME from EMPLOYEE natural join WORKS_ON group by ESSN,ENAME having count(PNO) >= 3 and sum(HOURS) <= 8;
+9.select ENAME,avg(SALARY)/sum(HOURS) from EMPLOYEE natural join WORKS_ON group by ESSN,ENAME;
